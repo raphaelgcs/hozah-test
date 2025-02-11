@@ -1,5 +1,6 @@
 import { FormData } from '../types';
 import { SITE_OFFERINGS } from '../constants';
+import { useState } from 'react';
 
 interface ParkingFormProps {
   formData: FormData;
@@ -16,8 +17,17 @@ export const ParkingForm = ({
   onSubmit,
   onChange,
 }: ParkingFormProps) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsButtonDisabled(true);
+    await onSubmit(e);
+    // waits one second to allow calculation again
+    setTimeout(() => setIsButtonDisabled(false), 1000);
+  };
+
   return (
-    <form onSubmit={onSubmit} className='space-y-4'>
+    <form onSubmit={handleSubmit} className='space-y-4'>
       <div>
         <label className='block text-sm font-bold text-gray-700'>
           Vehicle Registration (VRM)
@@ -102,11 +112,11 @@ export const ParkingForm = ({
 
       <button
         type='submit'
-        disabled={loading}
+        disabled={loading || isButtonDisabled}
         className='w-full py-2 px-4 rounded text-base font-bold text-gray-800 disabled:opacity-50 cursor-pointer'
         style={{ backgroundColor: '#00e399' }}
       >
-        {loading ? 'Calculating...' : 'Calculate Cost'}
+        {isButtonDisabled ? 'Calculating...' : 'Calculate Cost'}
       </button>
     </form>
   );
