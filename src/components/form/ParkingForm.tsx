@@ -1,5 +1,5 @@
-import { FormData } from '../types';
-import { SITE_OFFERINGS } from '../constants';
+import { FormData } from '../../types';
+import { SITE_OFFERINGS } from '../../constants';
 import { useState } from 'react';
 
 interface ParkingFormProps {

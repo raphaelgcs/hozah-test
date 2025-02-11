@@ -1,6 +1,6 @@
-import { CalculationResult } from '../types';
+import { CalculationResult } from '../../types';
 
-import { formatPrice, parseDuration } from '../utils';
+import { formatPrice, parseDuration } from '../../utils/formUtils';
 
 interface ResultDisplayProps {
   result: CalculationResult | null;

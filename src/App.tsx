@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { CalculationResult, FormData } from './types';
 import { initialFormData } from './constants';
-import { normalizeVrm, formatDuration, parseDuration } from './utils';
+import { normalizeVrm, formatDuration, parseDuration } from './utils/formUtils';
 import { calculateParkingCost } from './api';
-import Navbar from './components/Navbar';
-import { ParkingForm } from './components/ParkingForm';
-import { ResultDisplay } from './components/ResultDisplay';
-import { ErrorDisplay } from './components/ErrorDisplay';
+import Navbar from './components/layout/Navbar';
+import { ParkingForm } from './components/form/ParkingForm';
+import { ResultDisplay } from './components/form/ResultDisplay';
+import { ErrorDisplay } from './components/form/ErrorDisplay';
 
 const App = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
